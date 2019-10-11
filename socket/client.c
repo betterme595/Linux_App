@@ -34,13 +34,14 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	char buf[]="hello world\n";
-//	while(1){
+	while(1){
 		printf("client send\n");
-		write(sock, buf, sizeof(buf));
+		send(sock,buf,strlen(buf),0);	//阻塞函数,直到发送完毕或出错
+//		write(sock, buf, sizeof(buf));
 		fsync(sock);
 //		flush(sock);
 		sleep(1);
-//	}
+	}
 	close(sock);
 	return 0;
 }

@@ -61,7 +61,8 @@ int main(int argc, char *argv[])
 	printf("get a client,ip:[%s] , port:[%d]\n",inet_ntoa(client_addr.sin_addr),ntohs(client_addr.sin_port));
 
 	while(1){
-		read_size = read(client_socket_fd, read_buf, sizeof(read_buf));
+		read_size = recv(client_socket_fd,read_buf,sizeof(read_buf),0);		//阻塞函数,直到发送完毕或出错
+//		read_size = read(client_socket_fd, read_buf, sizeof(read_buf));
 		if(read_size > 0){
 			printf("client:%s",read_buf);
 		}
